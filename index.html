@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apple Picker</title>
+    <link href ="style.css" rel = "stylesheet" type = "text/css"/>
+</head>
+<body>
+<div class = "content">
+    <h1>Apple Picker</h1>
+    <br>
+    <div class = "row">
+        <p>Get to 1,000 clicks to win</p>
+    </div>
+    <div class = "row">
+        <div class = "apple">
+            <img src =https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf" alt = "apple">
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "board">
+            <h2>Score</h2>
+            <p class = "hidden"></p>
+        </div>
+    </div>
+    <br>
+    <div class = "row">
+        <div class = "board">
+            <div class = "shop">
+                <h2>Shop</h2>
+                <br>
+                <button id = "2x">2x Picking: 75 clicks</button>
+                <button id = "5x">5x Picking: 150 clicks</button>
+                <button id = "10x">10x Picking: 400 clicks</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const apple = document.querySelector('img');
+    const score = document.querySelector('.hidden');
+
+    const twoTimes = document.getElementById('2x');
+    const fiveTimes = document.getElementById('5x');
+    const tenTimes = document.getElementById('10x');
+
+
+    apple.addEventListener('click', function (e) {
+        increaseScore();
+    })
+
+    function increaseScore(){
+        let scoreNum = 0;
+        scoreNum++;
+        score.classList.remove("hidden");
+        score.innerHTML = '' + scoreNum;
+    }
+
+    function twoTimesScore(){
+        let scoreNum = 0;
+        scoreNum + 2;
+        score.classList.remove("hidden");
+        score.innerHTML = '' + scoreNum;
+    }
+    twoTimes.addEventListener('click', function (e){
+        twoTimesScore();
+    })
+
+
+</script>
+</html>
