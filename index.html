@@ -10,7 +10,7 @@
     <h1>Apple Picker</h1>
     <br>
     <div class = "row">
-        <p>Get to 1,000 clicks to win</p>
+        <p>Get to 500 clicks to win</p>
     </div>
     <div class = "row">
         <div class = "apple">
@@ -29,17 +29,20 @@
             <div class = "shop">
                 <h2>Shop</h2>
                 <br>
-                <button id = "2x">2x Picking: 75 clicks</button>
-                <button id = "5x">5x Picking: 150 clicks</button>
-                <button id = "10x">10x Picking: 400 clicks</button>
+                <button id = "2x">2x Picking: 20 clicks</button>
+                <button id = "5x">5x Picking: 50 clicks</button>
+                <button id = "10x">10x Picking: 100 clicks</button>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script>
+    let scoreNum = 0;
+    let clickValue = 1;
+
     const apple = document.querySelector('img');
-    const score = document.querySelector('.hidden');
+    const scoreDisplay = document.querySelector('.hidden');
 
     const twoTimes = document.getElementById('2x');
     const fiveTimes = document.getElementById('5x');
@@ -51,22 +54,45 @@
     })
 
     function increaseScore(){
-        let scoreNum = 0;
-        scoreNum++;
-        score.classList.remove("hidden");
-        score.innerHTML = '' + scoreNum;
+        scoreNum+= clickValue;
+        scoreDisplay.classList.remove("hidden");
+        scoreDisplay.innerHTML = scoreNum;
+        return scoreNum;
     }
 
     function twoTimesScore(){
-        let scoreNum = 0;
-        scoreNum + 2;
-        score.classList.remove("hidden");
-        score.innerHTML = '' + scoreNum;
+        if(scoreNum>=20){
+            clickValue *= 2;
+            scoreNum -= 20;
+            twoTimes.disabled = true;
+            scoreDisplay.innerHTML = scoreNum;
+        }
     }
-    twoTimes.addEventListener('click', function (e){
-        twoTimesScore();
-    })
+    twoTimes.addEventListener('click', twoTimesScore);
 
+    function fiveTimesScore(){
+        if(scoreNum>=50) {
+            clickValue *= 2.5;
+            scoreNum -= 50;
+            fiveTimes.disabled = true;
+            scoreDisplay.innerHTML = scoreNum;
+        }
+    }
+    fiveTimes.addEventListener('click', fiveTimesScore);
+
+    function tenTimesScore(){
+        if(scoreNum>=100){
+            clickValue *= 2;
+            scoreNum -= 100;
+            tenTimes.disabled = true;
+            scoreDisplay.innerHTML = scoreNum;
+        }
+    }
+    tenTimes.addEventListener('click', tenTimesScore);
+
+    if(scoreNum>=20){
+        apple.src = "https://static.vecteezy.com/system/resources/previews/047/076/346/non_2x/golden-apple-on-transparent-background-free-png.png"
+    }
 
 </script>
 </html>
