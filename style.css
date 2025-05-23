@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 body {
-    background-color: darkturquoise;
+    background: url("https://www.wjhl.com/wp-content/uploads/sites/98/2021/10/AdobeStock_122672335.jpeg?w=2560&h=1440&crop=1") fixed;
 }
 
 img{
@@ -17,7 +17,6 @@ img{
     gap: 16px;
 }
 .board{
-    width: 500px;
     padding: 20px;
     border-radius: 12px;
     background: #fdfdc4;

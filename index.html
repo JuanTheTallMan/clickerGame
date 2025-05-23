@@ -2,43 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Apple Picker</title>
+    <title>Apple Market</title>
     <link href ="style.css" rel = "stylesheet" type = "text/css"/>
 </head>
 <body>
 <div class = "content">
     <div class = "board">
-        <h1>Selling Apples</h1>
+        <h1>Apple Market</h1>
     </div>
     <br>
     <div class = "board">
         <div class = "row">
-            <h3>Get to $5,000 to unlock the Diamond Apple</h3>
+            <h3 id = "text1">Sell and purchase apples to earn money!</h3>
+            <h3 id = "text2">Sell an apple by clicking on it!</h3>
+            <h3 id = "text3">Get to $5,000 to unlock the Rainbow Apple and win!</h3>
         </div>
     </div>
     <div class = "row">
         <div class = "apple">
-            <img src = "https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf" alt = "apple">
+            <img src = "https://png.pngtree.com/png-vector/20231224/ourmid/pngtree-red-apple-core-on-white-background-eaten-png-image_11215621.png" alt = "apple">
         </div>
     </div>
     <div class = "row">
-        <div class = "board">
-            <h2>Dollars</h2>
-            <p class = "hidden"></p>
+        <div class = "money">
+            <div class = "board">
+                <h2>Dollars</h2>
+                <p class = "hidden"></p>
+            </div>
         </div>
     </div>
     <br>
     <div class = "row">
-        <div class = "board">
-            <div class = "shop">
+        <div class = "shop">
+            <div class = "board">
                 <h2>Shop</h2>
                 <br>
-                <button id = "2x">2x Price: $20</button>
-                <button id = "5x">5x Price: $50</button>
-                <button id = "10x">10x Price: $100</button>
-                <button id = "100x">100x Price: $500</button>
+                <button id = "2x">Red Apple: $20</button>
+                <button id = "5x">Green Apple: $50</button>
+                <button id = "10x">Gold Apple: $100</button>
+                <button id = "100x">Diamond Apple: $500</button>
             </div>
         </div>
+    </div>
+    <br>
+    <div class = "row">
+        <button id = reset>Reset</button>
     </div>
 </div>
 </body>
@@ -48,20 +56,24 @@
 
     const apple = document.querySelector('img');
     const moneyDisplay = document.querySelector('.hidden');
+    const textOne = document.getElementById('text1');
+    const textTwo = document.getElementById('text2');
+    const textThree = document.getElementById('text3');
+
+    const moneyCounter = document.querySelector('.money');
+    const shop = document.querySelector('.shop');
 
     const twoTimes = document.getElementById('2x');
     const fiveTimes = document.getElementById('5x');
-    const tenTimes = document.getElementById('10x')
-    const hundredTimes = document.getElementById('100x')
+    const tenTimes = document.getElementById('10x');
+    const hundredTimes = document.getElementById('100x');
 
+    const resetButton = document.getElementById('reset');
 
     apple.addEventListener('click', function (e) {
-        increaseMoney();
-        levelUpOne();
-        levelUpTwo();
-        levelUpThree();
-        levelUpFour();
         winningScreen();
+        increaseMoney();
+        rainbowApple();
     })
 
     function increaseMoney(){
@@ -77,6 +89,7 @@
             moneyNum -= 20;
             twoTimes.disabled = true;
             moneyDisplay.innerHTML = "$" + moneyNum;
+            apple.src = "https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf"
         }
     }
     twoTimes.addEventListener('click', twoTimesMoney);
@@ -87,6 +100,7 @@
             moneyNum -= 50;
             fiveTimes.disabled = true;
             moneyDisplay.innerHTML = "$" + moneyNum;
+            apple.src = "https://static.vecteezy.com/system/resources/previews/052/552/829/non_2x/shiny-green-apple-with-stem-and-leaf-free-png.png"
         }
     }
     fiveTimes.addEventListener('click', fiveTimesMoney);
@@ -97,6 +111,7 @@
             moneyNum -= 100;
             tenTimes.disabled = true;
             moneyDisplay.innerHTML = "$" + moneyNum;
+            apple.src = "https://static.vecteezy.com/system/resources/previews/047/076/346/non_2x/golden-apple-on-transparent-background-free-png.png"
         }
     }
     tenTimes.addEventListener('click', tenTimesMoney);
@@ -107,36 +122,30 @@
             moneyNum -= 500;
             hundredTimes.disabled = true;
             moneyDisplay.innerHTML = "$" + moneyNum;
+            apple.src = "https://png.pngtree.com/png-vector/20241219/ourmid/pngtree-d-glossy-blue-apple-with-leaf-and-vibrant-finish-on-transparent-png-image_14799698.png"
         }
     }
     hundredTimes.addEventListener('click', hundredTimesMoney);
 
-    function levelUpOne(){
-        if(moneyNum>=50){
-            apple.src = "https://static.vecteezy.com/system/resources/previews/052/552/829/non_2x/shiny-green-apple-with-stem-and-leaf-free-png.png"
-        }
-        if(moneyNum<50){
-            apple.src = "https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf"
-        }
-    }
-    function levelUpTwo(){
-        if(moneyNum>=100){
-            apple.src = "https://static.vecteezy.com/system/resources/previews/047/076/346/non_2x/golden-apple-on-transparent-background-free-png.png"
-        }
-    }
-    function levelUpThree() {
-        if(moneyNum >= 500) {
-            apple.src = "https://png.pngtree.com/png-vector/20241219/ourmid/pngtree-d-glossy-blue-apple-with-leaf-and-vibrant-finish-on-transparent-png-image_14799698.png"
-        }
-    }
-    function levelUpFour(){
+    function rainbowApple(){
         if(moneyNum >= 5000){
             apple.src = "https://png.pngtree.com/png-vector/20250416/ourmid/pngtree-colorful-glossy-apple-with-rainbow-gradient-effect-png-image_15993031.png"
         }
     }
 
     function winningScreen(){
-
+        if(moneyNum>=5000){
+            moneyCounter.remove();
+            shop.remove();
+            textOne.innerHTML = "You Won!";
+            textTwo.innerHTML = "Congratulations on unlocking the Rainbow Apple!";
+            textThree.remove();
+        }
     }
+
+    function resetEverything(){
+        window.location.reload();
+    }
+    resetButton.addEventListener('click', resetEverything);
 </script>
 </html>
