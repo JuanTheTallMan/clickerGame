@@ -7,19 +7,23 @@
 </head>
 <body>
 <div class = "content">
-    <h1>Apple Picker</h1>
+    <div class = "board">
+        <h1>Selling Apples</h1>
+    </div>
     <br>
-    <div class = "row">
-        <p>Get to 500 clicks to win</p>
+    <div class = "board">
+        <div class = "row">
+            <h3>Get to $5,000 to unlock the Diamond Apple</h3>
+        </div>
     </div>
     <div class = "row">
         <div class = "apple">
-            <img src =https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf" alt = "apple">
+            <img src = "https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf" alt = "apple">
         </div>
     </div>
     <div class = "row">
         <div class = "board">
-            <h2>Score</h2>
+            <h2>Dollars</h2>
             <p class = "hidden"></p>
         </div>
     </div>
@@ -29,70 +33,110 @@
             <div class = "shop">
                 <h2>Shop</h2>
                 <br>
-                <button id = "2x">2x Picking: 20 clicks</button>
-                <button id = "5x">5x Picking: 50 clicks</button>
-                <button id = "10x">10x Picking: 100 clicks</button>
+                <button id = "2x">2x Price: $20</button>
+                <button id = "5x">5x Price: $50</button>
+                <button id = "10x">10x Price: $100</button>
+                <button id = "100x">100x Price: $500</button>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script>
-    let scoreNum = 0;
+    let moneyNum = 0;
     let clickValue = 1;
 
     const apple = document.querySelector('img');
-    const scoreDisplay = document.querySelector('.hidden');
+    const moneyDisplay = document.querySelector('.hidden');
 
     const twoTimes = document.getElementById('2x');
     const fiveTimes = document.getElementById('5x');
-    const tenTimes = document.getElementById('10x');
+    const tenTimes = document.getElementById('10x')
+    const hundredTimes = document.getElementById('100x')
 
 
     apple.addEventListener('click', function (e) {
-        increaseScore();
+        increaseMoney();
+        levelUpOne();
+        levelUpTwo();
+        levelUpThree();
+        levelUpFour();
+        winningScreen();
     })
 
-    function increaseScore(){
-        scoreNum+= clickValue;
-        scoreDisplay.classList.remove("hidden");
-        scoreDisplay.innerHTML = scoreNum;
-        return scoreNum;
+    function increaseMoney(){
+        moneyNum+= clickValue;
+        moneyDisplay.classList.remove("hidden");
+        moneyDisplay.innerHTML = "$" + moneyNum;
+        return moneyNum;
     }
 
-    function twoTimesScore(){
-        if(scoreNum>=20){
+    function twoTimesMoney(){
+        if(moneyNum>=20){
             clickValue *= 2;
-            scoreNum -= 20;
+            moneyNum -= 20;
             twoTimes.disabled = true;
-            scoreDisplay.innerHTML = scoreNum;
+            moneyDisplay.innerHTML = "$" + moneyNum;
         }
     }
-    twoTimes.addEventListener('click', twoTimesScore);
+    twoTimes.addEventListener('click', twoTimesMoney);
 
-    function fiveTimesScore(){
-        if(scoreNum>=50) {
+    function fiveTimesMoney(){
+        if(moneyNum>=50) {
             clickValue *= 2.5;
-            scoreNum -= 50;
+            moneyNum -= 50;
             fiveTimes.disabled = true;
-            scoreDisplay.innerHTML = scoreNum;
+            moneyDisplay.innerHTML = "$" + moneyNum;
         }
     }
-    fiveTimes.addEventListener('click', fiveTimesScore);
+    fiveTimes.addEventListener('click', fiveTimesMoney);
 
-    function tenTimesScore(){
-        if(scoreNum>=100){
+    function tenTimesMoney(){
+        if(moneyNum>=100){
             clickValue *= 2;
-            scoreNum -= 100;
+            moneyNum -= 100;
             tenTimes.disabled = true;
-            scoreDisplay.innerHTML = scoreNum;
+            moneyDisplay.innerHTML = "$" + moneyNum;
         }
     }
-    tenTimes.addEventListener('click', tenTimesScore);
+    tenTimes.addEventListener('click', tenTimesMoney);
 
-    if(scoreNum>=20){
-        apple.src = "https://static.vecteezy.com/system/resources/previews/047/076/346/non_2x/golden-apple-on-transparent-background-free-png.png"
+    function hundredTimesMoney(){
+        if(moneyNum>=500){
+            clickValue *= 10;
+            moneyNum -= 500;
+            hundredTimes.disabled = true;
+            moneyDisplay.innerHTML = "$" + moneyNum;
+        }
+    }
+    hundredTimes.addEventListener('click', hundredTimesMoney);
+
+    function levelUpOne(){
+        if(moneyNum>=50){
+            apple.src = "https://static.vecteezy.com/system/resources/previews/052/552/829/non_2x/shiny-green-apple-with-stem-and-leaf-free-png.png"
+        }
+        if(moneyNum<50){
+            apple.src = "https://www.proto.gr/sites/www.proto.gr/files/styles/colorbox/public/images/fruits/apple.png?itok=eNTrsBdf"
+        }
+    }
+    function levelUpTwo(){
+        if(moneyNum>=100){
+            apple.src = "https://static.vecteezy.com/system/resources/previews/047/076/346/non_2x/golden-apple-on-transparent-background-free-png.png"
+        }
+    }
+    function levelUpThree() {
+        if(moneyNum >= 500) {
+            apple.src = "https://png.pngtree.com/png-vector/20241219/ourmid/pngtree-d-glossy-blue-apple-with-leaf-and-vibrant-finish-on-transparent-png-image_14799698.png"
+        }
+    }
+    function levelUpFour(){
+        if(moneyNum >= 5000){
+            apple.src = "https://png.pngtree.com/png-vector/20250416/ourmid/pngtree-colorful-glossy-apple-with-rainbow-gradient-effect-png-image_15993031.png"
+        }
     }
 
+    function winningScreen(){
+
+    }
 </script>
 </html>
